@@ -6,7 +6,7 @@ class PalindromChecker{
         StringBuilder builder=new StringBuilder(key);
         builder.reverse();
         return key.equals(builder.toString());
-
+        
     }
     public static boolean withLoop(String key)
     {
