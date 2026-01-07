@@ -1,14 +1,17 @@
 package day2.handsOn;
 class Department {
-    private int deptid;
-    private String deptname;
-
-
-
-
+    int deptid;
+    String deptname;
     public Department(int deptid, String deptname) {
         this.deptid = deptid;
         this.deptname = deptname;
     }
 
+    public int getDeptid() {
+        return deptid;
+    }
+
+    public String getDeptname() {
+        return deptname;
+    }
 }
