@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class MainGetter {
     public static void main(String[] args) {
         Employee employee;
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in); //Scanner Class to take input from terminal
+        //taking values for all attributes of employees and address
         System.out.println("Enter your name: ");
         String name = sc.nextLine();
         System.out.println("Enter your age: ");
@@ -22,7 +23,7 @@ public class MainGetter {
         String city = sc.next();
         System.out.println("Enter your pincode: ");
         int pincode = sc.nextInt();
-
+        //injecting values using employee
         Employee employee1=new Employee(salary,name,(short) age,1,city,pincode,state);
         System.out.println(employee1.toString());
     }
