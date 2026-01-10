@@ -1,51 +1,67 @@
-
-public class Employee implements Comparable<Employee>
+package day2.handsOn;
+class Employee
 {
-    //attributes of employee
-    private String name,phonenumber,email;
-    private int id;
-    //constructor injector to inject values of all the attributes of Employee
-    public Employee(String name,String phonenumber,String email,int id)
-    {
-        this.name=name;
-        this.phonenumber=phonenumber;
-        this.email=email;
-        this.id=id;
+    private int eid;
+    private String name;
+    public Department department;
+    private double salary;
+
+    public Employee(int eid, String name, double salary) {
+        this.eid = eid;
+        this.name = name;
+        this.department = null;
+        this.salary = salary;
     }
-    //getter methods of all attributes
+
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public Department getDepartment() {
+        return department;
     }
 
-    public int getId() {
-        return id;
+    public void setDepartment(int id,String name) {
+        this.department = new Department(id,name);
     }
-
-    @Override 
-    public int compareTo(Employee e) //used for Sorting in sorted() of Stream api
+    public Department existingDepartmentChecker(String deptname,Employee[] emp)
     {
-        
-        return Integer.compare(this.id,e.getId());
+        if(emp==null||emp.length==0) return null;
+        int i=0;
+        for(Employee e:emp)
+        {
+            if(e==null||e.department==null) return null;
+
+            if(e.department.getDeptname().equals(deptname))
+            {
+                return e.department;
+            }
+
+        }
+        return null;
+    }
+    public double getSalary() {
+        return salary;
     }
 
-    @Override //used for distinct() to filter duplicates
-    public boolean equals(Object object) {
-        if (!(object instanceof Employee)) return false;
-       
-        Employee employee = (Employee) object;
-        return getId() == employee.getId();
-    }
-
-    @Override //used for distinct() to filter duplicates
-    public int hashCode() {
-        return id;
+    public void setSalary(double salary) {
+        if(salary<0)
+        {
+            System.out.println("Salary is negative");
+            this.setSalary(salary);
+        }
+        this.salary = salary;
     }
 }
