@@ -45,7 +45,8 @@ class MainsGetter{
                 System.out.println("Enter Employee id");
                 int id=input.nextInt();
                 Employees e=details(id,employees); //getting values from details
-                if(e==null){
+                if(e==null)
+                {
                     System.out.println("Details not found");
                     continue;
                 }

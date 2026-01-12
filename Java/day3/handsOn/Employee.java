@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Employee implements Comparable<Employee>
 {
@@ -39,13 +40,17 @@ public class Employee implements Comparable<Employee>
     @Override //used for distinct() to filter duplicates
     public boolean equals(Object object) {
         if (!(object instanceof Employee)) return false;
-       
+
         Employee employee = (Employee) object;
         return getId() == employee.getId();
+
     }
 
     @Override //used for distinct() to filter duplicates
     public int hashCode() {
         return id;
     }
+
+
+
 }
