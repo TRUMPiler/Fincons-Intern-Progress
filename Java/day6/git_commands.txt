@@ -1,0 +1,26 @@
+# Git Commands for Day 6 Hands-on
+
+# 1. Initialize a Git repo
+git init
+
+# 2. Create a file Employee.java
+# (This is done through the IDE or text editor)
+
+# 3. Check file status
+git status
+
+# 4. Stage the file
+git add Employee.java
+
+# 5. Commit with a proper message
+git commit -m "Adding Employee.java file to day6 directory and fincons intern progress repo"
+
+# 6. View commit history
+git log
+
+# 7. Push changes to GitHub
+# First, you need to create a repository on GitHub and get its URL.
+# Then, add the remote repository:
+# git remote add origin <repository_url>
+# Finally, push the changes:
+git push -u origin main
