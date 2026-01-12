@@ -1,11 +1,14 @@
 package day2.task.b;
 
+// This class represents an employee and inherits properties from the Address class.
+// This demonstrates an "is-a" relationship (inheritance).
 public class Employee extends Address {
 
     String name;
     short age;
     int salary;
-    //constructor and calling super method that invokes Parent class Constructor
+
+    // Constructor that initializes employee and address details by calling the superclass constructor.
     Employee(int salary, String name, short age, int id, String city, int pincode,String state) {
         super(city, pincode, state);
         this.name = name;
@@ -13,8 +16,9 @@ public class Employee extends Address {
         this.salary = salary;
     }
 
+    // Overridden toString method to include both employee and address information.
     @Override
-    public String toString() {// Generated to string method to print all values instead of printing each
+    public String toString() {
         return "Employee{" +
                 "address=" + super.toString()+
                 ", name='" + name + '\'' +

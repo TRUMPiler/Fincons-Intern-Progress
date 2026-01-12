@@ -2,19 +2,24 @@ package day2.task.b;
 
 import java.util.Scanner;
 
+// This is the main class that collects user input to create and display employee details.
+// It demonstrates the use of the Employee class which inherits from the Address class.
 public class MainGetter {
     public static void main(String[] args) {
-        Employee employee;
-        Scanner sc = new Scanner(System.in); //Scanner Class to take input from terminal
-        //taking values for all attributes of employees and address
+        Scanner sc = new Scanner(System.in);
+
+        // Prompting the user for employee and address information.
         System.out.println("Enter your name: ");
         String name = sc.nextLine();
         System.out.println("Enter your age: ");
-        int age=sc.nextInt();
-        if(age<18) {
+        int age = sc.nextInt();
+
+        // Basic age validation.
+        if (age < 18) {
             System.out.println("Invalid age");
-        return;
+            return;
         }
+
         System.out.println("Enter your salary: ");
         int salary = sc.nextInt();
         System.out.println("Enter your state: ");
@@ -23,8 +28,11 @@ public class MainGetter {
         String city = sc.next();
         System.out.println("Enter your pincode: ");
         int pincode = sc.nextInt();
-        //injecting values using employee
-        Employee employee1=new Employee(salary,name,(short) age,1,city,pincode,state);
+
+        // Creating an Employee object, which also initializes the Address part of it.
+        Employee employee1 = new Employee(salary, name, (short) age, 1, city, pincode, state);
+
+        // Printing the employee's details using the overridden toString method.
         System.out.println(employee1.toString());
     }
 }

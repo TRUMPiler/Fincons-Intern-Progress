@@ -1,61 +1,59 @@
+package day4.practical;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class MainsGetter{
-    //method to iterate for getting details and handelling null;
-    static Employees details(int id,Map<Integer, Employees> map)
-    {
-            if(map.getOrDefault(id,null)!=null)
-            {
-                return map.get(id);
-            }
-            return null;
+// This class provides a console interface to manage and search for employees.
+class MainsGetter {
+
+    // Searches for an employee by ID in the given map.
+    static Employees details(int id, Map<Integer, Employees> map) {
+        return map.getOrDefault(id, null);
     }
 
-    public static void main(String args[])
-    {
-        Map<Integer,Employees> employees = new HashMap<Integer,Employees>();//storing data accoring to id of all employees
+    public static void main(String[] args) {
+        Map<Integer, Employees> employees = new HashMap<>();
         Scanner input = new Scanner(System.in);
-        for(int i=0;i<5;i++)
-        {
-            System.out.println("Enter Employee Department");// enter department
-            String deptname=input.next();
-            System.out.println("Enter Employee Name");// enter name
-            String name=input.next();
-            System.out.println("Enter Employee Salary"); //enter salary
-            double salary=input.nextDouble();
-            if(salary<0) // salary cant be less than 0
-            {
-                System.out.println("salary can't be negative\nre-enter the details");
-                i--;
+
+        // Loop to input details for 5 employees.
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Enter details for Employee " + (i + 1));
+            System.out.print("Department: ");
+            String deptname = input.next();
+            System.out.print("Name: ");
+            String name = input.next();
+            System.out.print("Salary: ");
+            double salary = input.nextDouble();
+
+            // Basic validation for salary.
+            if (salary < 0) {
+                System.out.println("Salary can't be negative. Please re-enter the details.");
+                i--; // Decrement to repeat the current iteration.
                 continue;
             }
-            System.out.println("Enter Employee Email");
-            String email=input.next();
-            employees.put(i,new Employees(name,deptname,email,salary));// constructors inejections
+
+            System.out.print("Email: ");
+            String email = input.next();
+            employees.put(i, new Employees(name, deptname, email, salary));
         }
-        int choice=2;
-        while(choice!=0)// repeating menu
-        {
-            System.out.println("Choice 1 for searching employees details and Choice 0 for exit\nEnter choice");
-            choice=input.nextInt();
-            if(choice==1)
-            {
-                System.out.println("Enter Employee id");
-                int id=input.nextInt();
-                Employees e=details(id,employees); //getting values from details
-                if(e==null)
-                {
-                    System.out.println("Details not found");
-                    continue;
+
+        int choice;
+        // Interactive menu for searching employees.
+        do {
+            System.out.println("\nEnter 1 to search for an employee, or 0 to exit.");
+            choice = input.nextInt();
+            if (choice == 1) {
+                System.out.print("Enter Employee ID to search: ");
+                int id = input.nextInt();
+                Employees e = details(id, employees);
+                if (e == null) {
+                    System.out.println("Employee not found.");
+                } else {
+                    System.out.println("Name: " + e.getName() + ", Salary: " + e.getSalary() +
+                            ", Department: " + e.getDepartment() + ", Email: " + e.getEmailId());
                 }
-                System.out.println("name:"+e.getName()+" salary:"+e.getSalary()+" departname:"+e.getDepartment()+" email:"+e.getEmailId());
             }
-            else
-            {
-                System.out.println("wrong choice");
-            }
-        }
+        } while (choice != 0);
     }
 }
