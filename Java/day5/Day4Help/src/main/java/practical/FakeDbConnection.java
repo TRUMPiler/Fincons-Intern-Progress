@@ -1,21 +1,24 @@
 package practical;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 class FakeDbConnection{
     static FakeDbConnection fb;
-    Logger logger;
-    private FakeDbConnection(){
+    Logger logger=LoggerFactory.getLogger(FakeDbConnection.class);
+    
+    private FakeDbConnection()
+    {
         logger= LoggerFactory.getLogger(FakeDbConnection.class);
     }
-    public static FakeDbConnection getInstance(){
-        if(fb==null){
+    public static FakeDbConnection getInstance()
+    {
+        if(fb==null)
+        {
             fb=new FakeDbConnection();
         }
         return fb;
     }
-    public boolean openConnection(String connectionString,Class OpeningClass){
+    public boolean openConnection(String connectionString,Class OpeningClass)
+    {
         logger.info("Opening connection to "+connectionString);
         logger.info("Connection opend by"+OpeningClass.getName());
         return  true;

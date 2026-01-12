@@ -9,7 +9,6 @@ class EmployeeSetter
         Scanner sc=new Scanner(System.in);
         System.out.print("Enter number of employees data you want to explore: ");
         int n=sc.nextInt(),count=1;
-
         Employee[] e=new Employee[n];
         for(int i=0;i<n;i++)
         {
