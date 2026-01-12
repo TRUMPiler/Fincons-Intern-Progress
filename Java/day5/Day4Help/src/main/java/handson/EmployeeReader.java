@@ -15,9 +15,9 @@ class EmployeeReader {
             br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(":");
+                String[] values = line.split(":"); // Example of data we are splitting: "Name:Naisal"
                 if (values.length == 2) {
-                    empDetails.put(values[0], values[1]);
+                    empDetails.put(values[0], values[1]); // values[0] is the key and values[1] is the value.
                 }
             }
 
@@ -41,7 +41,7 @@ class EmployeeReader {
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         } finally {
-            // Ensuring the BufferedReader is closed to release resources.
+            // Ensuring the BufferedReader is closed to release resources and prevent memory leaks.
             try {
                 if (br != null) {
                     br.close();
