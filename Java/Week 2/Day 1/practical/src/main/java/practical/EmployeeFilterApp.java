@@ -9,11 +9,11 @@ public class EmployeeFilterApp {
     public static void main(String[] args) {
         // Create a list of employees to be used for filtering.
         List<Employee> employees = new ArrayList<>();
-        employees.add(new Employee("John Doe", 60000, "IT"));
-        employees.add(new Employee("Jane Smith", 45000, "HR"));
-        employees.add(new Employee("Peter Jones", 70000, "IT"));
-        employees.add(new Employee("Mary Williams", 48000, "Finance"));
-        employees.add(new Employee("David Brown", 52000, "IT"));
+        employees.add(new Employee("Naisal Doshi", 60000, "IT"));
+        employees.add(new Employee("Riya Jain", 75000, "IT"));
+        employees.add(new Employee("Shraddha Joshi", 45000, "HR"));
+        employees.add(new Employee("Deven Hirelekar", 48000, "Finance"));
+        employees.add(new Employee("Harshita Rautela", 52000, "IT"));
 
         System.out.println("Employees with salary > 50,000:");
         // Use a lambda expression to filter employees with a salary greater than 50,000.

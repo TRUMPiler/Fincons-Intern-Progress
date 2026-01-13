@@ -51,7 +51,7 @@ public class App {
                     .peek(e -> e.setName(e.getName().toUpperCase())) // modify name ()
                     .toList();
 
-
+            //printing the filtered list
             System.out.println("FilteredList:\n" + filteredList.stream().map(Employee::toString).collect(Collectors.joining("\n")));
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter the correct data type.");
