@@ -15,12 +15,12 @@ public class App {
 
         // Create three threads from the same Runnable task
       Thread t1 = new Thread(threads,"Task Naisal 1");
-      t1.setPriority(Thread.MAX_PRIORITY);
+
       Thread t2 = new Thread(threads,"Task Naisal 2");
-      t2.setPriority(Thread.NORM_PRIORITY);
+
 
       Thread t3 = new Thread(threads,"Task Naisal 3");
-      t3.setPriority(Thread.MIN_PRIORITY);
+
 
         // Start the threads
         t2.start();

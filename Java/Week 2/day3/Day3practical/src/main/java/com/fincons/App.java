@@ -10,7 +10,8 @@ import org.springframework.context.ApplicationContext;
  */
 @SpringBootApplication
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Launch the Spring application and get the application context.
         ApplicationContext context = SpringApplication.run(App.class, args);
 

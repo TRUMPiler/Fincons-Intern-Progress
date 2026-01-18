@@ -6,13 +6,10 @@ package handsOn;
  */
 public class MyThread implements Runnable
 {
-
-
     /**
      * This method is the entry point for the new thread.
      * It prints the thread's name, ID, and the process ID.
      */
-    @Override
     public void run()
     {
 
