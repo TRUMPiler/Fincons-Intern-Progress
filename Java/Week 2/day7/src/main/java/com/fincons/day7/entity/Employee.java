@@ -1,8 +1,11 @@
 package com.fincons.day7.entity;
 
+import lombok.Builder;
+
 /**
  * Represents an employee record.
  */
+@Builder
 public class Employee {
 
     private long id;

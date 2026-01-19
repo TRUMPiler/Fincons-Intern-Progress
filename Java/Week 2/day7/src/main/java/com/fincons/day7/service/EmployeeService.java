@@ -1,5 +1,7 @@
 package com.fincons.day7.service;
 
+import com.fincons.day7.EmployeeDto;
+import com.fincons.day7.EmployeeFilterDto;
 import com.fincons.day7.entity.Employee;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 /**
- * Service class for managing employees.
- * This class provides methods for creating, retrieving, and filtering employee data.
+ * Service class for creating, retrieving, and filtering employee data.
  */
 @Service
 public class EmployeeService {
@@ -20,49 +21,36 @@ public class EmployeeService {
     private final Map<Long, Employee> employees = new ConcurrentHashMap<>();
 
     /**
-     * Creates a new employee after validating their details.
-     *
-     *
-     * @param employee The employee object to be created.
-     * @return The newly created employee with a generated ID.
-     * @throws IllegalArgumentException if the employee's name is null/empty or the salary is not positive.
+     * Creates a new employee from a DTO after validating their details.
      */
-    public Employee createEmployee(Employee employee) {
-        if (employee.getName() == null || employee.getName().isEmpty()) {
+    public Employee createEmployee(EmployeeDto employeeDto) {
+        if (employeeDto.getName() == null || employeeDto.getName().isEmpty()) {
             throw new IllegalArgumentException("Employee name must not be empty.");
         }
 
-        if (employee.getSalary() <= 0) {
+        if (employeeDto.getSalary() <= 0) {
             throw new IllegalArgumentException("Employee salary must be a positive value.");
         }
 
         long id = counter.incrementAndGet();
-        employee.setId(id);
-        employees.put(id, employee);
-        return employee;
+        Employee emp = new Employee(id, employeeDto.getName(), employeeDto.getDepartment(), employeeDto.getSalary());
+
+        employees.put(id, emp);
+        return emp;
     }
 
     /**
      * Retrieves an employee by their unique ID.
-     *
-     * @param id The ID of the employee to retrieve.
-     * @return The employee corresponding to the given ID, or {@code null} if not found.
      */
     public Employee getEmployeeById(long id) {
         return employees.get(id);
     }
 
     /**
-     * Retrieves a list of all employees or filters them by department.
-     *
-     * If a department is provided, this method returns a list of employees
-     * belonging to that department (case-insensitive). If the department is
-     * {@code null}, it returns a list of all employees.
-     *
-     * @param department The department name to filter by. Can be {@code null}.
-     * @return A list of {@link Employee} objects.
+     * Retrieves a list of employees, filtered by department if provided in the DTO.
      */
-    public List<Employee> getEmployeesByDepartment(String department) {
+    public List<Employee> getEmployeesByDepartment(EmployeeFilterDto filterDto) {
+        String department = filterDto.getDepartment();
         if (department == null) {
             return List.copyOf(employees.values());
         }

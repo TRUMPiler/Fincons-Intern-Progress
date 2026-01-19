@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller for handling employee retrieval requests.
  */
-@RestController
+@RestController("task2EmployeeController")
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
     @Autowired
-    private EmployeeService employeeService;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     /**
      * Handles the HTTP GET request to retrieve an employee by their ID.

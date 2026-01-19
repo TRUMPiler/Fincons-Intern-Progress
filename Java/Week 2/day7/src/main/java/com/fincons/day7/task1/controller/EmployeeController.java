@@ -1,5 +1,6 @@
 package com.fincons.day7.task1.controller;
 
+import com.fincons.day7.EmployeeDto;
 import com.fincons.day7.entity.Employee;
 import com.fincons.day7.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller for handling employee creation requests.
  */
-@RestController
+@RestController("task1EmployeeController")
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
+    //constructor injection
     @Autowired
-    private EmployeeService employeeService;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     /**
      * Handles the HTTP POST request to create a new employee.
      *
-     * @param employee The employee data sent in the request body.
+     * @param employeeDto The employee data sent in the request body.
      * @return A ResponseEntity containing the created employee and a 200 OK status.
      */
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        Employee createdEmployee = employeeService.createEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDto employeeDto) {
+        Employee createdEmployee = employeeService.createEmployee(employeeDto);
         return ResponseEntity.ok(createdEmployee);
     }
 }
