@@ -22,12 +22,6 @@ public class EmployeeService {
     /**
      * Creates a new employee after validating their details.
      *
-     * <p>
-     * Note on validation:
-     * For projects with numerous validation rules, consider using a dedicated
-     * validation framework such as Jakarta Bean Validation. This allows for
-     * cleaner, more maintainable code by using annotations directly on the model.
-     * </p>
      *
      * @param employee The employee object to be created.
      * @return The newly created employee with a generated ID.
