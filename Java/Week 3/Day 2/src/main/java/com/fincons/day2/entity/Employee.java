@@ -9,35 +9,42 @@ import jakarta.persistence.ManyToOne;
 import java.util.UUID;
 
 /**
- * Represents an employee in the system.
+ * Represents an Employee record in the database.
  */
 @Entity
 public class Employee {
 
     /**
-     * The unique identifier for the employee.
+     * The unique ID for the employee. This is generated automatically.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /**
-     * The name of the employee.
+     * The employee's full name.
      */
     private String name;
 
     /**
-     * The salary of the employee.
+     * The employee's salary.
      */
     private double salary;
 
     /**
-     * The department to which the employee belongs.
+     * The employee's encrypted password.
+     */
+    private String password;
+
+    /**
+     * The department this employee belongs to.
      */
     @ManyToOne
     private Department department;
 
-    // Getters and Setters
+    /**
+     * Standard getters and setters for the fields.
+     */
     public UUID getId() {
         return id;
     }
@@ -60,6 +67,14 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Department getDepartment() {

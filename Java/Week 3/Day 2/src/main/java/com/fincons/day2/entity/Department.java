@@ -10,30 +10,32 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Represents a department in the system.
+ * Represents a Department record in the database.
  */
 @Entity
 public class Department {
 
     /**
-     * The unique identifier for the department.
+     * The unique ID for the department. This is generated automatically.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /**
-     * The name of the department.
+     * The name of the department (e.g., "Human Resources", "Engineering").
      */
     private String name;
 
     /**
-     * The list of employees in the department.
+     * The list of employees who are part of this department.
      */
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
-    // Getters and Setters
+    /**
+     * Standard getters and setters.
+     */
     public UUID getId() {
         return id;
     }

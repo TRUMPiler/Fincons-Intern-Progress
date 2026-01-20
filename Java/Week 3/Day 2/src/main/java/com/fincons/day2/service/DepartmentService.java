@@ -1,50 +1,46 @@
 
 package com.fincons.day2.service;
 
-import com.fincons.day2.entity.Department;
+import com.fincons.day2.dto.DepartmentDto;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Service interface for managing departments.
+ * Defines the business logic for managing departments.
+ * This interface acts as a contract for the DepartmentServiceImpl.
  */
 public interface DepartmentService {
 
     /**
-     * Retrieves a department by its ID.
-     *
-     * @param id The ID of the department to retrieve.
-     * @return The department with the specified ID, or null if not found.
+     * Finds a department by its ID.
+     * @param id The ID of the department to find.
+     * @return The data transfer object for the found department.
      */
-    Department getDepartmentById(UUID id);
+    DepartmentDto getDepartmentById(UUID id);
 
     /**
      * Retrieves a list of all departments.
-     *
-     * @return A list of all departments.
+     * @return A list of all department data transfer objects.
      */
-    List<Department> getAllDepartments();
+    List<DepartmentDto> getAllDepartments();
 
     /**
      * Creates a new department.
-     *
-     * @param department The department to create.
-     * @return The created department.
+     * @param departmentDto The data needed to create the new department.
+     * @return The data transfer object for the newly created department.
      */
-    Department createDepartment(Department department);
+    DepartmentDto createDepartment(DepartmentDto departmentDto);
 
     /**
-     * Updates an existing department.
-     *
-     * @param id         The ID of the department to update.
-     * @param department The updated department information.
-     * @return The updated department, or null if the department with the specified ID is not found.
+     * Updates an existing department's information.
+     * @param id The ID of the department to update.
+     * @param departmentDto The new data for the department.
+     * @return The data transfer object for the updated department.
      */
-    Department updateDepartment(UUID id, Department department);
+    DepartmentDto updateDepartment(UUID id, DepartmentDto departmentDto);
 
     /**
-     * Deletes a department by its ID.
-     *
+     * Deletes a department from the system.
      * @param id The ID of the department to delete.
      */
     void deleteDepartment(UUID id);

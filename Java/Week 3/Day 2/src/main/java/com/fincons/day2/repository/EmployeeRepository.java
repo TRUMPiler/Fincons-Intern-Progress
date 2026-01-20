@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 /**
- * Repository interface for managing employees in the database.
+ * Handles database operations for the Employee entity.
+ * Spring Data JPA provides the implementation for these methods automatically.
  */
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {

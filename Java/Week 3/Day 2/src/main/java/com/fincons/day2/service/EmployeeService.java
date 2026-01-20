@@ -1,50 +1,46 @@
 
 package com.fincons.day2.service;
 
-import com.fincons.day2.entity.Employee;
+import com.fincons.day2.dto.EmployeeDto;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Service interface for managing employees.
+ * Defines the business logic for managing employees.
+ * This interface acts as a contract for the EmployeeServiceImpl.
  */
 public interface EmployeeService {
 
     /**
-     * Retrieves an employee by their ID.
-     *
-     * @param id The ID of the employee to retrieve.
-     * @return The employee with the specified ID, or null if not found.
+     * Finds an employee by their ID.
+     * @param id The ID of the employee to find.
+     * @return The data transfer object for the found employee.
      */
-    Employee getEmployeeById(UUID id);
+    EmployeeDto getEmployeeById(UUID id);
 
     /**
      * Retrieves a list of all employees.
-     *
-     * @return A list of all employees.
+     * @return A list of all employee data transfer objects.
      */
-    List<Employee> getAllEmployees();
+    List<EmployeeDto> getAllEmployees();
 
     /**
      * Creates a new employee.
-     *
-     * @param employee The employee to create.
-     * @return The created employee.
+     * @param employeeDto The data needed to create the new employee.
+     * @return The data transfer object for the newly created employee.
      */
-    Employee createEmployee(Employee employee);
+    EmployeeDto createEmployee(EmployeeDto employeeDto);
 
     /**
-     * Updates an existing employee.
-     *
-     * @param id       The ID of the employee to update.
-     * @param employee The updated employee information.
-     * @return The updated employee, or null if the employee with the specified ID is not found.
+     * Updates an existing employee's information.
+     * @param id The ID of the employee to update.
+     * @param employeeDto The new data for the employee.
+     * @return The data transfer object for the updated employee.
      */
-    Employee updateEmployee(UUID id, Employee employee);
+    EmployeeDto updateEmployee(UUID id, EmployeeDto employeeDto);
 
     /**
-     * Deletes an employee by their ID.
-     *
+     * Deletes an employee from the system.
      * @param id The ID of the employee to delete.
      */
     void deleteEmployee(UUID id);
