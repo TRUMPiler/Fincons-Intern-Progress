@@ -7,13 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import java.util.UUID;
-
 /**
  * Represents an Employee record in the database.
  */
 @Entity
 public class Employee {
-
+//to study and implement collections.
     /**
      * The unique ID for the employee. This is generated automatically.
      */
