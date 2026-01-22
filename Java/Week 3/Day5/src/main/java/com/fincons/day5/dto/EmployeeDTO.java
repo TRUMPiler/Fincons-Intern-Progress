@@ -1,13 +1,13 @@
 package com.fincons.day5.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank; // Import @NotBlank
+import jakarta.validation.constraints.Size;   // Import @Size
 
 /**
  * Data Transfer Object (DTO) for Employee.
  * This class is used to transfer employee data between different layers of the application,
  * typically between the controller and the service layer, or for exposing data via REST APIs.
- * It includes validation annotations to ensure data integrity.
  */
 public class EmployeeDTO {
     /**
@@ -17,24 +17,30 @@ public class EmployeeDTO {
 
     /**
      * The first name of the employee.
-     * It must not be null or empty.
+     * It must not be null or contain only whitespace.
+     * The length must be between 2 and 50 characters.
      */
-    @NotEmpty(message = "First name must not be empty.")
+    @NotBlank(message = "First name must not be blank.")
+    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters.")
     private String firstName;
 
     /**
      * The last name of the employee.
-     * It must not be null or empty.
+     * It must not be null or contain only whitespace.
+     * The length must be between 2 and 50 characters.
      */
-    @NotEmpty(message = "Last name must not be empty.")
+    @NotBlank(message = "Last name must not be blank.")
+    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters.")
     private String lastName;
 
     /**
      * The email address of the employee.
-     * It must not be null or empty and must be a well-formed email address.
+     * It must not be null or blank, must be a well-formed email address,
+     * and its length must not exceed 100 characters.
      */
-    @NotEmpty(message = "Email must not be empty.")
-    @Email(message = "Email should be valid.")
+    @NotBlank(message = "Email must not be blank.")
+    @Email(message = "Email should be a valid email address.")
+    @Size(max = 100, message = "Email must not exceed 100 characters.")
     private String email;
 
     /**
@@ -58,74 +64,36 @@ public class EmployeeDTO {
         this.email = email;
     }
 
-    /**
-     * Retrieves the unique identifier of the employee.
-     *
-     * @return The employee's ID.
-     */
+    // Getters and Setters remain the same
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * Sets the unique identifier of the employee.
-     *
-     * @param id The employee's ID.
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * Retrieves the first name of the employee.
-     *
-     * @return The employee's first name.
-     */
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * Sets the first name of the employee.
-     *
-     * @param firstName The employee's first name.
-     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    /**
-     * Retrieves the last name of the employee.
-     *
-     * @return The employee's last name.
-     */
     public String getLastName() {
         return lastName;
     }
 
-    /**
-     * Sets the last name of the employee.
-     *
-     * @param lastName The employee's last name.
-     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    /**
-     * Retrieves the email address of the employee.
-     *
-     * @return The employee's email.
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * Sets the email address of the employee.
-     *
-     * @param email The employee's email.
-     */
     public void setEmail(String email) {
         this.email = email;
     }
