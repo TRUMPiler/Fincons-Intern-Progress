@@ -42,9 +42,11 @@ public class EmployeeController {
      */
     @GetMapping("/getByFilter")
     public ResponseEntity<Response<List<EmployeeDto>>> getByFilter(
-            @ModelAttribute EmployeeFilterDto employeeFilterDto) {
+            @ModelAttribute EmployeeFilterDto employeeFilterDto)
+    {
         List<EmployeeDto> finalList=new ArrayList<>();
-        if(employeeFilterDto.getDepartment()!=null&&employeeFilterDto.getSalary()<=0.0){
+        if(employeeFilterDto.getDepartment()!=null&&employeeFilterDto.getSalary()<=0.0)
+        {
             finalList=employeeService.getEmployeeByFilter(employeeFilterDto.getDepartment());
         }
         else if(employeeFilterDto.getSalary()>0.0&&employeeFilterDto.getDepartment()==null)

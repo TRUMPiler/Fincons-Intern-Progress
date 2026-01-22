@@ -37,7 +37,7 @@ public class EmployeeService {
      */
     public List<EmployeeDTO> getAllEmployees() {
         return employeeRepository.findAll().stream()
-                .map(employeeMapper::toDto)
+                .map(employeeMapper::employeeToEmployeeDTO)
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class EmployeeService {
     public EmployeeDTO getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
-        return employeeMapper.toDto(employee);
+        return employeeMapper.employeeToEmployeeDTO(employee);
     }
 
     /**
@@ -64,8 +64,8 @@ public class EmployeeService {
         if (employeeDTO.getSalary() <= 0) {
             throw new InvalidSalaryException("Salary must be positive");
         }
-        Employee employee = employeeMapper.toEntity(employeeDTO);
+        Employee employee = employeeMapper.employeeDTOToEmployee(employeeDTO);
         Employee savedEmployee = employeeRepository.save(employee);
-        return employeeMapper.toDto(savedEmployee);
+        return employeeMapper.employeeToEmployeeDTO(savedEmployee);
     }
 }
