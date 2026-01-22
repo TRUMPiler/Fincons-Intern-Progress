@@ -1,27 +1,40 @@
 package com.fincons.day5.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 /**
  * Data Transfer Object (DTO) for Employee.
  * This class is used to transfer employee data between different layers of the application,
  * typically between the controller and the service layer, or for exposing data via REST APIs.
- * It omits sensitive information like password.
+ * It includes validation annotations to ensure data integrity.
  */
 public class EmployeeDTO {
     /**
      * The unique identifier of the employee.
      */
     private Long id;
+
     /**
      * The first name of the employee.
+     * It must not be null or empty.
      */
+    @NotEmpty(message = "First name must not be empty.")
     private String firstName;
+
     /**
      * The last name of the employee.
+     * It must not be null or empty.
      */
+    @NotEmpty(message = "Last name must not be empty.")
     private String lastName;
+
     /**
      * The email address of the employee.
+     * It must not be null or empty and must be a well-formed email address.
      */
+    @NotEmpty(message = "Email must not be empty.")
+    @Email(message = "Email should be valid.")
     private String email;
 
     /**

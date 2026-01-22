@@ -3,6 +3,7 @@ package com.fincons.day5.controller;
 import com.fincons.day5.dto.EmployeeDTO;
 import com.fincons.day5.service.EmployeeService;
 import com.fincons.day5.utils.Response; // Correct import for the generic Response class from utils
+import jakarta.validation.Valid; // Import for @Valid annotation
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +28,13 @@ public class EmployeeController {
 
     /**
      * Handles HTTP POST requests to create a new employee.
+     * The {@code @Valid} annotation triggers validation checks defined in {@link EmployeeDTO}.
      *
      * @param employeeDTO The EmployeeDTO object containing employee details to be created.
      * @return A ResponseEntity containing a Response object with the created EmployeeDTO and HTTP status CREATED.
      */
     @PostMapping
-    public ResponseEntity<Response<EmployeeDTO>> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<Response<EmployeeDTO>> createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) {
         // Call service to create the employee
         EmployeeDTO createdEmployee = employeeService.createEmployee(employeeDTO);
         // Create a standardized success response using the utils.Response class
@@ -72,6 +74,7 @@ public class EmployeeController {
 
     /**
      * Handles HTTP PUT requests to update an existing employee.
+     * The {@code @Valid} annotation triggers validation checks defined in {@link EmployeeDTO}.
      *
      * @param id The ID of the employee to update.
      * @param employeeDTO The EmployeeDTO object containing updated employee details.
@@ -79,7 +82,7 @@ public class EmployeeController {
      *         Throws ResourceNotFoundException if no employee is found with the given ID.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Response<EmployeeDTO>> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<Response<EmployeeDTO>> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeDTO employeeDTO) {
         // Call service to update the employee
         EmployeeDTO updatedEmployee = employeeService.updateEmployee(id, employeeDTO);
         // Create a standardized success response using the utils.Response class

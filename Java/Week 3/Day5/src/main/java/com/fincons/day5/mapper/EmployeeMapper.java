@@ -14,9 +14,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
 
-    // This INSTANCE field is typically used when not integrating with a dependency injection framework like Spring.
-    // With `componentModel = "spring"`, the mapper can be directly injected into other Spring components.
-    // EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
+
 
     /**
      * Converts an {@link Employee} entity to an {@link EmployeeDTO}.

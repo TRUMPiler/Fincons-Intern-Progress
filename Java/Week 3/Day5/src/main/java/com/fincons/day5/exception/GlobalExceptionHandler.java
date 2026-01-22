@@ -3,11 +3,15 @@ package com.fincons.day5.exception;
 import com.fincons.day5.utils.Response; // Import the generic Response class from utils
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Global exception handler to centralize the handling of exceptions across all @Controller classes.
@@ -53,6 +57,32 @@ public class GlobalExceptionHandler {
                 null // No data payload for error responses
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    /**
+     * Handles {@link MethodArgumentNotValidException}, which is thrown when validation on an argument
+     * annotated with {@code @Valid} fails.
+     *
+     * @param ex The MethodArgumentNotValidException instance.
+     * @param request The current web request.
+     * @return A {@link ResponseEntity} containing a standardized error {@link Response} object with a map of validation errors and HTTP status BAD_REQUEST.
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Response<Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+
+        Response<Object> errorResponse = new Response<>(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                "Validation failed",
+                errors
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     /**
